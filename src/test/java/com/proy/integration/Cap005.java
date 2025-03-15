@@ -6,7 +6,7 @@ import com.proy.readers.HandleInput;
 
 public class Cap005 {
     private final String[] PATH = {
-        "src\\test\\java\\com\\proy\\integration\\integration_test_resources\\Cap005File.java"
+        "src\\test\\resources\\integration_test_resources\\Cap005File.java"
     };
 
     public void test() {
