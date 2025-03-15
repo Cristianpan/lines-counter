@@ -1,17 +1,16 @@
 package com.proy.integration;
 
-
 import java.io.FileNotFoundException;
 
 import com.proy.readers.HandleInput;
 
 public class Cap001 {
     private final String[] PATH = {
-        "src\\test\\java\\com\\proy\\integration\\integration_test_resources\\Cap001File.java"
+        "src\\test\\resources\\integration_test_resources\\Cap001File.java"
     };
 
     private final String[] PATHNOJAVA = {
-        "src\\test\\java\\com\\proy\\integration\\integration_test_resources\\Cap001NoJavaFile.java"
+        "src\\test\\resources\\integration_test_resources\\Cap001NoJavaFile.py"
     };
 
     public void test() {
