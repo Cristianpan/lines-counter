@@ -18,12 +18,12 @@ public class CodeValidationContext {
     private CodeSegment codeSegment;
 
     public CodeValidationContext(){
-        this.codeSegment = new CodeSegment(0,0);
+        this.codeSegment = new CodeSegment(0,0,0);
     }
 
     public CodeValidationContext(StandardValidator standardValidator){
         this.standardValidator = standardValidator;
-        this.codeSegment = new CodeSegment(0,0);
+        this.codeSegment = new CodeSegment(0,0,0);
     }
 
     public boolean validate(List<String> lines) throws CodeStandarException{
@@ -60,6 +60,14 @@ public class CodeValidationContext {
 
     public void addPhysicalLine(){
         this.codeSegment.addPhysicalLine();
+    }
+
+    public void incrementNumMethods(){
+        this.codeSegment.incrementNumMethods();
+    }
+
+    public int getNumMethods(){
+        return this.codeSegment.getNumMethods();
     }
 
     public void addLogicalAndPhysicalLine(){

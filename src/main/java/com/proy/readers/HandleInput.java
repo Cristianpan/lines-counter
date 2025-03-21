@@ -68,7 +68,7 @@ public class HandleInput {
         new PrintResults().printResults(directory);
     }
     
-        /**
+    /**
      * Procesa un archivo individual, contando las líneas físicas y lógicas del código
      * y mostrando los resultados.
      *
@@ -76,7 +76,7 @@ public class HandleInput {
      * @throws FileNotFoundException Si ocurre un error al acceder al archivo.
      */
     private void processFile(File file) throws FileNotFoundException {
-        System.out.printf("%-30s %-30s %-30s %-30s%n", "", "Clase", "Lineas fisicas", "Lineas logicas");
+        System.out.printf("%-30s %-30s %-30s %-30s%n", "", "Clase", "Métodos", "Lineas físicas");
         FileCounter fileCounter = new FileCounter(file);
         fileCounter.countLinesInFile();
         CodeSegment codeSegment = fileCounter.getCodeSegment();

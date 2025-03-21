@@ -23,9 +23,11 @@ public class PrintResults {
      *                  del conteo de líneas a imprimir.
      */
     public void printResults(Directory directory) {
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-35s %-40s %-20s %-20s%n", "programa", "archivo", "Lineas fisicas", "Lineas logicas");
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(
+                "-----------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-35s %-40s %-20s %-20s%n", "programa", "clase", "Métodos", "Lineas físicas");
+        System.out.println(
+                "-----------------------------------------------------------------------------------------------------------------------------");
         showIndividualResults(directory);
     }
 
@@ -47,20 +49,19 @@ public class PrintResults {
                 } else if (i == 0) {
                     System.out.printf("%-35s %-40s %-20s %-20s%n", directory.getName(),
                             codeSegments.get(i).getTitle(),
-                            codeSegments.get(i).getPhysicalLines(),
-                            codeSegments.get(i).getLogicalLines());
-
+                            codeSegments.get(i).getNumMethods(),
+                            codeSegments.get(i).getPhysicalLines());
                 } else {
-                    System.out.printf("%-35s %-40s %-20s %-20s%n", " ",
+                    System.out.printf("%-35s %-40s %-20s %-20s%n", "",
                             codeSegments.get(i).getTitle(),
-                            codeSegments.get(i).getPhysicalLines(),
-                            codeSegments.get(i).getLogicalLines());
+                            codeSegments.get(i).getNumMethods(),
+                            codeSegments.get(i).getPhysicalLines());
                 }
                 directory.addPhysicalLine(codeSegments.get(i).getPhysicalLines());
                 directory.addLogicalLine(codeSegments.get(i).getLogicalLines());
             }
             if (directory.getPysicalLines() > 0) {
-                System.out.printf("%-35s %-40s %-20s %-20s%n", "Total", "", directory.getPysicalLines(), directory.getLogicalLines());
+                System.out.printf("%-35s %-40s %-20s %-20s%n", "Total", "", "", directory.getPysicalLines());
             }
         }
 
@@ -73,4 +74,3 @@ public class PrintResults {
         }
     }
 }
-

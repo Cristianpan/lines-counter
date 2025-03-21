@@ -112,9 +112,11 @@ public class DirectoryFileCounter {
 
     private void processFile(File file, Directory directory){
         setFileCounter(new FileCounter(file));
-        this.fileCounter.countLinesInFile();
-        CodeSegment codeSegment = fileCounter.getCodeSegment();
-        directory.getCodeSegments().add(codeSegment);
+        if (this.fileCounter.containsAClass()) {
+            this.fileCounter.countLinesInFile();
+            CodeSegment codeSegment = fileCounter.getCodeSegment();
+            directory.getCodeSegments().add(codeSegment);
+        }
     }
 
     private void processDirectory(File file, Directory directory) throws FileNotFoundException{
