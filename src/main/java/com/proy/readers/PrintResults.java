@@ -25,7 +25,7 @@ public class PrintResults {
     public void printResults(Directory directory) {
         System.out.println(
                 "-----------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-35s %-40s %-20s %-20s%n", "programa", "clase", "Métodos", "Lineas físicas");
+        System.out.printf("%-35s %-40s %-20s %-20s %-20s%n", "programa", "archivo", "Tipo", "Métodos", "Lineas físicas");
         System.out.println(
                 "-----------------------------------------------------------------------------------------------------------------------------");
         showIndividualResults(directory);
@@ -47,13 +47,15 @@ public class PrintResults {
                 if (codeSegments.get(i).getTitle() == null) {
                     continue;
                 } else if (i == 0) {
-                    System.out.printf("%-35s %-40s %-20s %-20s%n", directory.getName(),
+                    System.out.printf("%-35s %-40s %-20s %-20s %-20s%n", directory.getName(),
                             codeSegments.get(i).getTitle(),
+                            codeSegments.get(i).isAClass() ? "Clase" : "Otro",
                             codeSegments.get(i).getNumMethods(),
                             codeSegments.get(i).getPhysicalLines());
                 } else {
-                    System.out.printf("%-35s %-40s %-20s %-20s%n", "",
+                    System.out.printf("%-35s %-40s %-20s %-20s %-20s%n", "",
                             codeSegments.get(i).getTitle(),
+                            codeSegments.get(i).isAClass() ? "Clase" : "Otro",
                             codeSegments.get(i).getNumMethods(),
                             codeSegments.get(i).getPhysicalLines());
                 }
@@ -61,7 +63,7 @@ public class PrintResults {
                 directory.addLogicalLine(codeSegments.get(i).getLogicalLines());
             }
             if (directory.getPysicalLines() > 0) {
-                System.out.printf("%-35s %-40s %-20s %-20s%n", "Total", "", "", directory.getPysicalLines());
+                System.out.printf("%-35s %-40s %-20s %-20s %-20s%n", "Total", "", "", "", directory.getPysicalLines());
             }
         }
 

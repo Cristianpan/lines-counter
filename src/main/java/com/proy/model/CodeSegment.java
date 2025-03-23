@@ -13,17 +13,20 @@ public class CodeSegment {
     private int logicalLines;
     private int numMethods;
     private String title;
+    private boolean isAClass; 
 
     public CodeSegment() {
         this.physicalLines = 0;
         this.logicalLines = 0;
         this.numMethods = 0;
+        this.isAClass = false;
     }
 
-    public CodeSegment(int physicalLines, int logicalLines, int numMethods) {
+    public CodeSegment(int physicalLines, int logicalLines, int numMethods, boolean isAClass) {
         this.physicalLines = physicalLines;
         this.logicalLines = logicalLines;
         this.numMethods = numMethods;
+        this.isAClass = isAClass;
     }
 
     public String getTitle() {
@@ -64,6 +67,10 @@ public class CodeSegment {
 
     public int getNumMethods() {
         return this.numMethods;
+    }
+
+    public boolean isAClass() {
+        return this.isAClass;
     }
 
     public void addLogicalAndPhysicalLines(int lines) {

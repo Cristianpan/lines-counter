@@ -18,12 +18,12 @@ public class CodeValidationContext {
     private CodeSegment codeSegment;
 
     public CodeValidationContext(){
-        this.codeSegment = new CodeSegment(0,0,0);
+        this.codeSegment = new CodeSegment(0,0,0, false);
     }
 
     public CodeValidationContext(StandardValidator standardValidator){
         this.standardValidator = standardValidator;
-        this.codeSegment = new CodeSegment(0,0,0);
+        this.codeSegment = new CodeSegment(0,0,0, false);
     }
 
     public boolean validate(List<String> lines) throws CodeStandarException{

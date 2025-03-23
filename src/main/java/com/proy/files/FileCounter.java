@@ -56,7 +56,7 @@ public class FileCounter {
                 codeValidationContext.setStandardValidator(new StructureCountValidator(codeValidationContext));
                 codeValidationContext.validate(lines);
                 this.codeSegment = new CodeSegment(codeValidationContext.getPhysicalLines(),
-                        codeValidationContext.getLogicalLines(), codeValidationContext.getNumMethods());
+                        codeValidationContext.getLogicalLines(), codeValidationContext.getNumMethods(), this.containsAClass());
                 this.codeSegment.setTitle(file.getName());
             } catch (Exception e) {
                 int errorLine = numLines - lines.size() + 1;
