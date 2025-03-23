@@ -5,7 +5,7 @@ package com.proy.model;
  * lógicas y físicas y guarda la cantidad de líneas físicas y lógicas contadas
  * en ese segmento
  * 
- * @version 1.1
+ * @version 1.2
  */
 
 public class CodeSegment {

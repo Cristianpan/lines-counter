@@ -12,7 +12,7 @@ import com.proy.validator.validatorControlers.StructureCountValidator;
  * La clase "FileCounter" proporciona los métodos que se necesitan para empezar
  * el conteo de lineas y validación de un archivo
  * 
- * @version 1.0
+ * @version 1.1
  */
 
 public class FileCounter {

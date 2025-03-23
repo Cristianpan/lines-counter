@@ -8,7 +8,7 @@ import com.proy.model.CodeSegment;
 /**
  * La clase "CodeValidationContext" almacena una referencia a uno de los objetos de los validadores concretos
  * CodeValidationContext se comunica con el objeto de StandardValidator
- * @version 1.0
+ * @version 1.1
  */
 
 

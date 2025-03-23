@@ -11,7 +11,7 @@ import com.proy.model.Directory;
  * en archivos Java dentro de un directorio y sus subdirectorios.
  * Recorre recursivamente todos los archivos y subdirectorios, utilizando 
  * FileCounter para contar las líneas de cada archivo Java 
- * @version 1.0
+ * @version 1.1
  */
 public class DirectoryFileCounter {
     private File directory;

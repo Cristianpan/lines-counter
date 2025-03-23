@@ -9,7 +9,7 @@ import com.proy.validator.validatorContext.StandardValidator;
 /**
  * La clase "FunctionStructureValidator" proporciona los métodos para validar una formato de firmas de funciones para poder hacer la suma de lineas físicas solo
  * en caso de ser un estructura de función
- * @version 1.0
+ * @version 1.1
  */
 
 public class FunctionStructureValidator extends StandardValidator{

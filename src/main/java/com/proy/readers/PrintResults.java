@@ -11,7 +11,7 @@ import com.proy.model.Directory;
  * de archivos dentro de un directorio, así como los resultados acumulados
  * de subdirectorios de manera recursiva.
  *
- * @version 1.0
+ * @version 1.1
  */
 public class PrintResults {
 

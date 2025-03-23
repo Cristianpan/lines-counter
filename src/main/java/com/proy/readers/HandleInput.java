@@ -12,7 +12,7 @@ import com.proy.model.Directory;
  * La clase HandleInput gestiona la obtención y procesamiento
  * de rutas de archivos o directorios desde los argumentos del programa
  * o ingresadas manualmente por el usuario.
- * @version 1.0
+ * @version 1.1
  */
 public class HandleInput {
 
