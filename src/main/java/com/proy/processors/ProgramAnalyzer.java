@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import com.proy.files.FileCounter;
-import com.proy.model.CodeSegment;
 import com.proy.model.Directory;
 import com.proy.readers.DirectoryFileCounter;
 import com.proy.readers.PrintResults;
@@ -47,7 +46,7 @@ public class ProgramAnalyzer {
     private void processDirectory(Path directoryFile) throws FileNotFoundException {
         DirectoryFileCounter directoryFileCounter = new DirectoryFileCounter(new File(directoryFile.toString()));
         Directory directory = directoryFileCounter.countLinesInDirectory();
-        new PrintResults().printResults(directory);
+        PrintResults.printResultsByDirectory(directory);
     }
 
     /**
@@ -59,12 +58,8 @@ public class ProgramAnalyzer {
      * @throws FileNotFoundException Si ocurre un error al acceder al archivo.
      */
     private void processFile(Path file) throws FileNotFoundException {
-        System.out.printf("%-30s %-30s %-30s %-30s%n", "", "Clase", "Lineas fisicas", "Lineas logicas");
         FileCounter fileCounter = new FileCounter(new File(file.toString()));
         fileCounter.countLinesInFile();
-        CodeSegment codeSegment = fileCounter.getCodeSegment();
-        Directory directory = new Directory("");
-        directory.getCodeSegments().add(codeSegment);
-        new PrintResults().printResults(directory);
+        PrintResults.printResultsByFile(fileCounter.getCodeSegment());
     }
 }
