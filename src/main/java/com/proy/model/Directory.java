@@ -11,8 +11,6 @@ public class Directory {
     private List<CodeSegment> codeSegments;
     private List<Directory> directories;
     private String name;
-    private int physicalLines;
-    private int logicalLines;
 
     public Directory(String name) {
         this.name = name;
@@ -48,21 +46,19 @@ public class Directory {
         this.directories = directories;
     }
 
-    public int getLogicalLines() {
+    public int getTotalLogicalLines() {
+        int logicalLines = 0;
+        for (CodeSegment codeSegment : codeSegments) {
+            logicalLines += codeSegment.getLogicalLines();
+        }
         return logicalLines;
     }
-
-    public int getPysicalLines() {
-        return physicalLines;
-    }
-
-    public void addLogicalLine(int lines) {
-        this.logicalLines = getLogicalLines() +lines;
-    }
-
-    public void addPhysicalLine(int lines) {
-        this.physicalLines = getPysicalLines() + lines;
-    }
-
     
+    public int getTotalPhysicalLines() {
+        int physicalLines = 0;
+        for (CodeSegment codeSegment : codeSegments) {
+            physicalLines += codeSegment.getLogicalLines();
+        }
+        return physicalLines;
+    }    
 }

@@ -1,76 +1,82 @@
 package com.proy.readers;
 
-import java.util.List;
-
 import com.proy.model.CodeSegment;
 import com.proy.model.Directory;
 
+import java.util.List;
+
 /**
- * La clase se encarga de imprimir en consola
- * los resultados del conteo de líneas físicas y lógicas de código
- * de archivos dentro de un directorio, así como los resultados acumulados
- * de subdirectorios de manera recursiva.
+ * La clase se encarga de imprimir en consola los resultados del conteo de líneas físicas y lógicas de código
+ * de archivos dentro de un directorio y sus subdirectorios o de un archivo individual.
  *
- * @version 1.0
+ * @version 2.0
  */
 public class PrintResults {
 
     /**
-     * Imprime en consola el encabezado de la tabla y los resultados
-     * individuales de un directorio, incluyendo archivos y subdirectorios.
-     *
-     * @param directory El objeto Directory que contiene los resultados
+     * Imprime en consola los resultados de un directorio y sus subdirectorios.
+     * @param directory Objeto Directory que contiene los resultados
      *                  del conteo de líneas a imprimir.
      */
-    public void printResults(Directory directory) {
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-35s %-40s %-20s %-20s%n", "programa", "archivo", "Lineas fisicas", "Lineas logicas");
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
-        showIndividualResults(directory);
+    public static void printResultsByDirectory(Directory directory) {
+        showHeaderData();
+        showDirectoryResults(directory);
     }
 
     /**
-     * Imprime los resultados individuales de cada archivo dentro del directorio,
-     * sumando las líneas físicas y lógicas al total del directorio.
-     * También procesa recursivamente los subdirectorios que contiene.
+     * Imprime en consola los resultados de un archivo individual.
      *
-     * @param directory El objeto Directory del cual se mostrarán los resultados
-     *                  de sus archivos y subdirectorios.
+     * @param codeSegment Objeto CodeSegment que contiene los resultados
+     *                    del conteo de líneas a imprimir.
      */
-    private void showIndividualResults(Directory directory) {
+    public static void printResultsByFile(CodeSegment codeSegment) {
+        showHeaderData();
+        showDataByFile(codeSegment.getTitle(), codeSegment);
+    }
+
+    /**
+     * Muestra en consola los resultados de un directorio y sus subdirectorios.
+     *
+     * @param directory Objeto Directory que contiene los resultados
+     *                  del conteo de líneas a imprimir.
+     */
+    private static void showDirectoryResults(Directory directory) {
         List<CodeSegment> codeSegments = directory.getCodeSegments();
+        
+        if (!codeSegments.isEmpty()) {
+            boolean isFirst = true;
 
-        if (codeSegments.size() > 0) {
-            for (int i = 0; i < codeSegments.size(); i++) {
-                if (codeSegments.get(i).getTitle() == null) {
-                    continue;
-                } else if (i == 0) {
-                    System.out.printf("%-35s %-40s %-20s %-20s%n", directory.getName(),
-                            codeSegments.get(i).getTitle(),
-                            codeSegments.get(i).getPhysicalLines(),
-                            codeSegments.get(i).getLogicalLines());
+            for (CodeSegment segment : codeSegments) {
+                showDataByFile(isFirst ? directory.getName() : " ", segment);
+                isFirst = false;
+            }
 
-                } else {
-                    System.out.printf("%-35s %-40s %-20s %-20s%n", " ",
-                            codeSegments.get(i).getTitle(),
-                            codeSegments.get(i).getPhysicalLines(),
-                            codeSegments.get(i).getLogicalLines());
-                }
-                directory.addPhysicalLine(codeSegments.get(i).getPhysicalLines());
-                directory.addLogicalLine(codeSegments.get(i).getLogicalLines());
-            }
-            if (directory.getPysicalLines() > 0) {
-                System.out.printf("%-35s %-40s %-20s %-20s%n", "Total", "", directory.getPysicalLines(), directory.getLogicalLines());
-            }
+            System.out.printf("%-35s %-40s %-20s %-20s%n", "Total", "", 
+            directory.getTotalPhysicalLines(), directory.getTotalLogicalLines());
         }
 
-        List<Directory> directories = directory.getDirectories();
+        directory.getDirectories().forEach(PrintResults::showDirectoryResults);
+    }
 
-        if (directories.size() > 0) {
-            for (int i = 0; i < directories.size(); i++) {
-                showIndividualResults(directories.get(i));
-            }
-        }
+
+    /**
+     * Muestra en consola el encabezado de la tabla de resultados.
+     */
+    private static void showHeaderData() {
+        System.out.println("-".repeat(125));
+        System.out.printf("%-35s %-40s %-20s %-20s%n", "Programa", "Archivo", "Líneas físicas", "Líneas lógicas");
+        System.out.println("-".repeat(125));
+    }
+
+    /**
+     * Muestra en consola los resultados de un archivo individual.
+     *
+     * @param programName Nombre del programa que contiene el archivo.
+     * @param codeSegment Objeto CodeSegment que contiene los resultados.
+     */
+    private static void showDataByFile(String programName, CodeSegment codeSegment) {
+        System.out.printf("%-35s %-40s %-20s %-20s%n", programName, 
+                codeSegment.getTitle(), codeSegment.getPhysicalLines(), codeSegment.getLogicalLines());
     }
 }
 
