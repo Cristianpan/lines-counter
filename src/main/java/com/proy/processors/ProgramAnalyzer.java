@@ -1,4 +1,4 @@
-package com.proy.model;
+package com.proy.processors;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import com.proy.files.FileCounter;
+import com.proy.model.CodeSegment;
+import com.proy.model.Directory;
 import com.proy.readers.DirectoryFileCounter;
 import com.proy.readers.PrintResults;
 

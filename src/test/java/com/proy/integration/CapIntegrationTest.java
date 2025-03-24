@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-import com.proy.model.ProgramAnalyzer;
+import com.proy.processors.ProgramAnalyzer;
 import com.proy.readers.HandleInput;
 
 

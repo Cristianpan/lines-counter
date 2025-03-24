@@ -3,7 +3,7 @@ package com.proy;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import com.proy.model.ProgramAnalyzer;
+import com.proy.processors.ProgramAnalyzer;
 import com.proy.readers.HandleInput;
 
 public class Main {
