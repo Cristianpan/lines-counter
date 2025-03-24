@@ -1,73 +1,46 @@
 package com.proy.readers;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class HandleInputTest {
-    
-    private HandleInput handleInput;
+    @Test
+    public void testGetInput_ValidFolderPath() throws FileNotFoundException {
+        String simulatedInput = "src\\test\\resources\\validFolderPath";
+        InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
+        Scanner scanner = new Scanner(inputStream);
 
-    @Before
-    public void setUp() {
-        handleInput = new HandleInput();
+        Path result = HandleInput.getInput(scanner);
+        
+        assertEquals(Paths.get(simulatedInput), result);
     }
 
-    /**
-     * Prueba el método processInput cuando se proporciona una ruta de archivo como argumento.
-     * Verifica si la ruta dada corresponde a un archivo.
-     */
     @Test
-    public void testProcessInput_WithArgs_File() {
-        String[] args = {"testFile.txt"};
-        File file = new File(args[0]);
+    public void testGetInput_ValidFilePath() throws FileNotFoundException {
+        String simulatedInput = "src\\test\\resources\\validFolderPath\\validFile.java";
+        InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
+        Scanner scanner = new Scanner(inputStream);
 
-        if (file.exists() && file.isFile()) {
-            assertTrue(file.isFile());
-        } else {
-            assertFalse(file.isFile());
-        }
+        Path result = HandleInput.getInput(scanner);
+        
+        assertEquals(Paths.get(simulatedInput), result);
     }
 
-    /**
-     * Prueba el método processInput cuando se proporciona una ruta de directorio como argumento.
-     * Verifica si la ruta dada corresponde a un directorio.
-     */
     @Test
-    public void testProcessInput_WithArgs_Directory() {
-        String[] args = {"testDirectory"};
-        File directory = new File(args[0]);
-
-        if (directory.exists() && directory.isDirectory()) {
-            assertTrue(directory.isDirectory());
-        } else {
-            assertFalse(directory.isDirectory());
-        }
-    }
-
-    /**
-     * Prueba el método processInput cuando no se proporcionan argumentos.
-     * Simula la entrada del usuario y asegura que la entrada se procese correctamente.
-     */
-    @Test
-    public void testProcessInput_NoArgs_UserInput() {
-
-        String simulatedInput = "testPath";
-        InputStream originalSystemIn = System.in;
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-
-        try {
-            handleInput.getInput(new String[]{});
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-
-        System.setIn(originalSystemIn);
+    public void testGetInput_invalidPath() {
+        String simulatedInput = "src\\test\\resour";
+        InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
+        Scanner scanner = new Scanner(inputStream); 
+        assertThrows(InvalidPathException.class, ()-> HandleInput.getInput(scanner));
     }
 }

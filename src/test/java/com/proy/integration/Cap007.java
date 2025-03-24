@@ -1,25 +1,13 @@
 package com.proy.integration;
 
-import java.io.FileNotFoundException;
-import com.proy.readers.HandleInput;
-
-public class Cap007 {
-    private final String[] PATH = {
+public class Cap007 extends CapIntegrationTest {
+    private static final String[] PATH = {
         "src\\test\\resources\\integration_test_resources\\Cap007File.java"
     };
 
-    public void test() {
-        HandleInput reader = new HandleInput();
-        try {
-            reader.getInput(this.PATH);
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-    }
 
     public static void main(String[] args) {
         Cap007 cap07 = new Cap007();
-        cap07.test();
+        cap07.test(PATH[0]);
     }
 }
