@@ -32,7 +32,7 @@ public class FileCounter {
         ReaderFile readerFile = new ReaderFile();
         List<String> lines = readerFile.readFileLines(file);
         int numLines = lines.size();
-        if (this.file.isFile() && this.file.getName().endsWith(".java")) {
+        if (FileCounter.isJavaFile(file)) {
             try {
                 codeValidationContext = new CodeValidationContext();
                 codeValidationContext.setStandardValidator(new StructureCountValidator(codeValidationContext));
@@ -47,10 +47,17 @@ public class FileCounter {
         } else{
             System.out.println(this.file.getName() + " no es un archivo con extensión válida");
         }
-        
-        
-        
     }
+
+    /**
+     * Verifica si el archivo es un archivo Java (.java)
+     * @param file el archivo a verificar
+     * @return {@code true} si el archivo es un archivo Java, {@code false} en caso contrario
+     */
+    public static boolean isJavaFile(File file) {
+        return file.isFile() && file.getName().endsWith(".java");
+    }
+    
     public CodeSegment getCodeSegment(){
         return this.codeSegment;
     }
