@@ -15,13 +15,14 @@ public class CapIntegrationTest {
     private Scanner prepareScanner(String simulatedInput) {
         InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         Scanner scanner = new Scanner(inputStream);
-
+        
         return scanner; 
     }
-
+    
     public void test(String simulatedInput) {
         try {
             Path path = HandleInput.getInput(this.prepareScanner(simulatedInput));
+            System.out.println(simulatedInput);
             new ProgramAnalyzer().analyzeProgram(path);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

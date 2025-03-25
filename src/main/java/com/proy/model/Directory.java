@@ -57,7 +57,7 @@ public class Directory {
     public int getTotalPhysicalLines() {
         int physicalLines = 0;
         for (CodeSegment codeSegment : codeSegments) {
-            physicalLines += codeSegment.getLogicalLines();
+            physicalLines += codeSegment.getPhysicalLines();
         }
         return physicalLines;
     }    
