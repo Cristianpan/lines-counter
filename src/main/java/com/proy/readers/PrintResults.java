@@ -6,15 +6,18 @@ import com.proy.model.Directory;
 import java.util.List;
 
 /**
- * La clase se encarga de imprimir en consola los resultados del conteo de líneas físicas y lógicas de código
- * de archivos dentro de un directorio y sus subdirectorios o de un archivo individual.
+ * La clase se encarga de imprimir en consola los resultados del conteo de
+ * líneas físicas y lógicas de código
+ * de archivos dentro de un directorio y sus subdirectorios o de un archivo
+ * individual.
  *
- * @version 2.0
+ * @version 2.1
  */
 public class PrintResults {
 
     /**
      * Imprime en consola los resultados de un directorio y sus subdirectorios.
+     * 
      * @param directory Objeto Directory que contiene los resultados
      *                  del conteo de líneas a imprimir.
      */
@@ -42,7 +45,7 @@ public class PrintResults {
      */
     private static void showDirectoryResults(Directory directory) {
         List<CodeSegment> codeSegments = directory.getCodeSegments();
-        
+
         if (!codeSegments.isEmpty()) {
             boolean isFirst = true;
 
@@ -51,20 +54,20 @@ public class PrintResults {
                 isFirst = false;
             }
 
-            System.out.printf("%-35s %-40s %-20s %-20s%n", "Total", "", 
-            directory.getTotalPhysicalLines(), directory.getTotalLogicalLines());
+            System.out.printf("%-35s %-40s %-20s %-20s %-20s%n", "Total", "", "", "",
+                    directory.getTotalPhysicalLines());
         }
 
         directory.getDirectories().forEach(PrintResults::showDirectoryResults);
     }
-
 
     /**
      * Muestra en consola el encabezado de la tabla de resultados.
      */
     private static void showHeaderData() {
         System.out.println("-".repeat(125));
-        System.out.printf("%-35s %-40s %-20s %-20s%n", "Programa", "Archivo", "Líneas físicas", "Líneas lógicas");
+        System.out.printf("%-35s %-40s %-20s %-20s %-20s%n", "Programa", "Archivo", "Tipo", "Métodos",
+                "Líneas físicas");
         System.out.println("-".repeat(125));
     }
 
@@ -75,8 +78,9 @@ public class PrintResults {
      * @param codeSegment Objeto CodeSegment que contiene los resultados.
      */
     private static void showDataByFile(String programName, CodeSegment codeSegment) {
-        System.out.printf("%-35s %-40s %-20s %-20s%n", programName, 
-                codeSegment.getTitle(), codeSegment.getPhysicalLines(), codeSegment.getLogicalLines());
+        String typeOfFile = codeSegment.isAClass() ? "Clase" : "Otro";
+        System.out.printf("%-35s %-40s %-20s %-20s %-20s%n", programName,
+                codeSegment.getTitle(), typeOfFile, codeSegment.getNumMethods(),
+                codeSegment.getLogicalLines());
     }
 }
-

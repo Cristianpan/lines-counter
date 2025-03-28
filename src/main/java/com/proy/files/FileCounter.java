@@ -1,6 +1,7 @@
 package com.proy.files;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.proy.exceptions.CodeStandarException;
@@ -13,16 +14,18 @@ import com.proy.validator.validatorControlers.StructureCountValidator;
  * La clase "FileCounter" proporciona los métodos que se necesitan para empezar
  * el conteo de lineas y validación de un archivo
  * 
- * @version 1.1
+ * @version 1.2
  */
 
 public class FileCounter {
 
     private File file;
     private CodeSegment codeSegment;
+    private List<String> fileContent;
 
     public FileCounter(File file) {
         this.file = file;
+        this.fileContent = new ReaderFile().readFileLines(file);
         this.codeSegment = new CodeSegment();
     }
 
@@ -38,13 +41,12 @@ public class FileCounter {
             return;
         }
 
-        List<String> lines = new ReaderFile().readFileLines(file);
-        int initialLines = lines.size();
+        int initialLines = fileContent.size();
 
         try {
-            validateAndSetCodeSegment(lines);
+            validateAndSetCodeSegment(new ArrayList<>(fileContent));
         } catch (CodeStandarException e) {
-            int errorLine = initialLines - lines.size() + 1;
+            int errorLine = initialLines - fileContent.size() + 1;
             System.out.println(file.getName());
             System.err.println(e.getMessage() + " Línea: " + errorLine);
         } catch (Exception e) {
@@ -64,6 +66,7 @@ public class FileCounter {
 
         this.codeSegment = codeValidationContext.getCodeSegment();
         this.codeSegment.setTitle(file.getName());
+        this.codeSegment.setIsAClass(containsAClass());
     }
 
     /**
@@ -75,6 +78,23 @@ public class FileCounter {
      */
     public static boolean isJavaFile(File file) {
         return file.isFile() && file.getName().endsWith(".java");
+    }
+
+    /**
+     * Verifica si el archivo contiene una clase
+     * @return {@code true} si el archivo contiene una clase, {@code false} en caso
+     *         contrario.
+     */
+    public boolean containsAClass() {
+        String classRegex = "\s*(public\\s+)?((abstract|final)\\s+)?class\\s+.*";
+
+        for (String lineOfFile : fileContent) {
+            if (lineOfFile.matches(classRegex)){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
