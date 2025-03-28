@@ -81,6 +81,6 @@ public class PrintResults {
         String typeOfFile = codeSegment.isAClass() ? "Clase" : "Otro";
         System.out.printf("%-35s %-40s %-20s %-20s %-20s%n", programName,
                 codeSegment.getTitle(), typeOfFile, codeSegment.getNumMethods(),
-                codeSegment.getLogicalLines());
+                codeSegment.getPhysicalLines());
     }
 }
