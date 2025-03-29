@@ -3,22 +3,28 @@ package com.proy.model;
 /**
  * La clase "CodeSegment" representa un segmento de código que tienen líneas lógicas y físicas y guarda la cantidad de líneas físicas y lógicas contadas en ese segmento
  * 
- * @version 1.0
+ * @version 1.1
  */
 
 public class CodeSegment {
     private int physicalLines;
     private int logicalLines;
     private String title;
+    private int numMethods;
+    private boolean isAClass;
 
     public CodeSegment() {
         this.physicalLines = 0;
         this.logicalLines = 0;
+        this.numMethods = 0;
+        this.isAClass = false;
     }
 
-    public CodeSegment(int physicalLines, int logicalLines) {
+    public CodeSegment(int physicalLines, int logicalLines, int numMethods, boolean isAClass) {
         this.physicalLines = physicalLines;
         this.logicalLines = logicalLines;
+        this.numMethods = numMethods;
+        this.isAClass = isAClass;
     }
 
     public String getTitle() {
@@ -26,7 +32,7 @@ public class CodeSegment {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title.replace(".java", "");
     }
 
     public int getLogicalLines() {
@@ -58,7 +64,6 @@ public class CodeSegment {
         setLogicalLines(getLogicalLines()+lines);
     }
 
-
     public void addPhysicalLine(){
         setPhysicalLines(getPhysicalLines()+1);
     }
@@ -70,5 +75,21 @@ public class CodeSegment {
     public void addLogicalAndPhysicalLine(){
         setPhysicalLines(getPhysicalLines()+1);
         setLogicalLines(getLogicalLines()+1);
+    }
+
+    public void incrementNumMethods() {
+        this.numMethods++;
+    }
+
+    public int getNumMethods() {
+        return this.numMethods;
+    }
+
+    public boolean isAClass() {
+        return this.isAClass;
+    }
+
+    public void setIsAClass(boolean isAClass) {
+        this.isAClass = isAClass;
     }
 }
