@@ -11,7 +11,7 @@ import java.util.List;
  * de archivos dentro de un directorio y sus subdirectorios o de un archivo
  * individual.
  *
- * @version 2.1
+ * @version 2.2
  */
 public class PrintResults {
 
@@ -22,8 +22,10 @@ public class PrintResults {
      *                  del conteo de líneas a imprimir.
      */
     public static void printResultsByDirectory(Directory directory) {
-        showHeaderData();
-        showDirectoryResults(directory);
+        if (directory.getCodeSegments().isEmpty() && directory.getDirectories().isEmpty()) {
+            showHeaderData();
+            showDirectoryResults(directory);
+        }
     }
 
     /**
@@ -33,8 +35,10 @@ public class PrintResults {
      *                    del conteo de líneas a imprimir.
      */
     public static void printResultsByFile(CodeSegment codeSegment) {
-        showHeaderData();
-        showDataByFile(codeSegment.getTitle(), codeSegment);
+        if (codeSegment.getTitle() != null) {
+            showHeaderData();
+            showDataByFile(codeSegment.getTitle(), codeSegment);
+        }
     }
 
     /**

@@ -13,7 +13,7 @@ import com.proy.model.Directory;
  * Recorre recursivamente todos los archivos y subdirectorios, utilizando
  * FileCounter para contar las líneas de cada archivo Java
  * 
- * @version 2.0
+ * @version 2.1
  */
 public class DirectoryFileCounter {
     private File directoryFile;
@@ -41,7 +41,7 @@ public class DirectoryFileCounter {
         File[] files = this.getFilesFromTheDirectory();
         
         for (File file : files) {
-            if (FileCounter.isJavaFile(file)) {
+            if (file.isFile()) {
                 directory.getCodeSegments().add(this.processFile(file));
             } else if (file.isDirectory()) {
                 Directory subDirectory = this.processDirectory(file);

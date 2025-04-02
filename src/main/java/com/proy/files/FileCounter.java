@@ -1,7 +1,6 @@
 package com.proy.files;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.proy.exceptions.CodeStandarException;
@@ -44,11 +43,10 @@ public class FileCounter {
         int initialLines = fileContent.size();
 
         try {
-            validateAndSetCodeSegment(new ArrayList<>(fileContent));
+            validateAndSetCodeSegment(fileContent);
         } catch (CodeStandarException e) {
             int errorLine = initialLines - fileContent.size() + 1;
-            System.out.println(file.getName());
-            System.err.println(e.getMessage() + " Línea: " + errorLine);
+            System.err.println(file.getName()+ ":" + e.getMessage() + "en la línea: " + errorLine);
         } catch (Exception e) {
         }
     }
