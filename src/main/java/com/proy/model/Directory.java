@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * La clase "Directory" es usada para representar los directorios que contienen archivos en el programa. Proporciona los getters y setters necesarios para acceder a los datos del conteo a través de los CodeSegment asignados al directorio
- * @version 1.0
+ * @version 2.0
  */
 public class Directory {
     private List<CodeSegment> codeSegments;
@@ -46,14 +46,6 @@ public class Directory {
         this.directories = directories;
     }
 
-    public int getTotalLogicalLines() {
-        int logicalLines = 0;
-        for (CodeSegment codeSegment : codeSegments) {
-            logicalLines += codeSegment.getLogicalLines();
-        }
-        return logicalLines;
-    }
-    
     public int getTotalPhysicalLines() {
         int physicalLines = 0;
         for (CodeSegment codeSegment : codeSegments) {

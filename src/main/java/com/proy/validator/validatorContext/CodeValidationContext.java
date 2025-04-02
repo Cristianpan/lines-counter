@@ -8,7 +8,7 @@ import com.proy.model.CodeSegment;
 /**
  * La clase "CodeValidationContext" almacena una referencia a uno de los objetos de los validadores concretos
  * CodeValidationContext se comunica con el objeto de StandardValidator
- * @version 1.1
+ * @version 2.0
  */
 
 
@@ -46,28 +46,12 @@ public class CodeValidationContext {
         this.codeSegment = codeSegment;
     }
 
-    public int getLogicalLines(){
-        return this.codeSegment.getLogicalLines();
-    }
-
     public int getPhysicalLines(){
         return this.codeSegment.getPhysicalLines();
     }
 
-    public void addLogicalLine(){
-        this.codeSegment.addLogicalLine();
-    }
-
     public void addPhysicalLine(){
         this.codeSegment.addPhysicalLine();
-    }
-
-    public void addLogicalAndPhysicalLine(){
-        this.codeSegment.addLogicalAndPhysicalLine();
-    }
-
-    public void addLogicalLine(int num){
-        this.codeSegment.addLogicalLines(num);;
     }
 
     public void addPhysicalLine(int num){

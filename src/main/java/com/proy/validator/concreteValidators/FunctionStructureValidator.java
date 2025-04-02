@@ -12,7 +12,7 @@ import com.proy.validator.validatorContext.StandardValidator;
  * solo
  * en caso de ser un estructura de función
  * 
- * @version 1.1
+ * @version 1.2
  */
 
 public class FunctionStructureValidator extends StandardValidator {
@@ -26,7 +26,6 @@ public class FunctionStructureValidator extends StandardValidator {
      * función y está en el formato
      * 
      * @param lines que representa las lineas de un código java
-     * 
      * @return si es una estructura de función y está en el formato
      * 
      */
@@ -36,12 +35,12 @@ public class FunctionStructureValidator extends StandardValidator {
         if (isAbstractInterfaceFunction(lines.get(0))) {
             return false;
         } else if (isFunction(lines.get(0))) {
-            getCodeValidationContext().addLogicalAndPhysicalLine();
+            getCodeValidationContext().addPhysicalLine();
             getCodeValidationContext().incrementNumMethods();
             return true;
         } else if (isIncompleteFunction(lines)) {
             if (matchesPattern(lines.get(0).trim(), "^.*?\\{\\s*(//.*)?$")) {
-                getCodeValidationContext().addLogicalAndPhysicalLine();
+                getCodeValidationContext().addPhysicalLine();
                 getCodeValidationContext().incrementNumMethods();
             } else {
                 getCodeValidationContext().addPhysicalLine();
@@ -56,13 +55,10 @@ public class FunctionStructureValidator extends StandardValidator {
      * Revisa si la linea es una función
      * 
      * @param line representa la linea de código a validar
-     * 
      * @return si es una función completa
-     * 
      * @throws CodeStandarException si es una estrucura de función y no está en el
      *                              formato
      */
-
     private boolean isFunction(String line) throws CodeStandarException {
         String structureFunction = "^[a-zA-Z\\s]+?\\s?[\\w<>\\[\\],]+\\s+\\w+\\s*\\(.*\\)\\s*.*\\{\\s*(//.*)?";
         return matchesPattern(line.trim(), structureFunction);

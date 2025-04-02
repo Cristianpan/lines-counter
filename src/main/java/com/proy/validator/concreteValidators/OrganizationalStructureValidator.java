@@ -17,7 +17,8 @@ public class OrganizationalStructureValidator extends StandardValidator{
     public OrganizationalStructureValidator(CodeValidationContext codeValidationContext){
         super(codeValidationContext);
     }
-    /*
+
+    /**
      * Cuenta una línea de código física si la linea o lineas representan una estructura organizacional
      * 
      * @param lines que representa las lineas de un código java
@@ -35,7 +36,7 @@ public class OrganizationalStructureValidator extends StandardValidator{
         }
     }
 
-    /*
+    /**
      * Revisa si la linea es una estructura organizacional
      * 
      * @param line representa la linea de código a validar
