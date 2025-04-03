@@ -22,7 +22,7 @@ public class PrintResults {
      *                  del conteo de líneas a imprimir.
      */
     public static void printResultsByDirectory(Directory directory) {
-        if (directory.getCodeSegments().isEmpty() && directory.getDirectories().isEmpty()) {
+        if (!directory.getCodeSegments().isEmpty() || !directory.getDirectories().isEmpty()) {
             showHeaderData();
             showDirectoryResults(directory);
         }
@@ -69,10 +69,10 @@ public class PrintResults {
      * Muestra en consola el encabezado de la tabla de resultados.
      */
     private static void showHeaderData() {
-        System.out.println("-".repeat(125));
+        System.out.println("-".repeat(140));
         System.out.printf("%-35s %-40s %-20s %-20s %-20s%n", "Programa", "Archivo", "Tipo", "Métodos",
                 "Líneas físicas");
-        System.out.println("-".repeat(125));
+        System.out.println("-".repeat(140));
     }
 
     /**

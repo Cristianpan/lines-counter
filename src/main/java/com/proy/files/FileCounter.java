@@ -1,6 +1,7 @@
 package com.proy.files;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.proy.exceptions.CodeStandarException;
@@ -41,6 +42,7 @@ public class FileCounter {
         }
 
         int initialLines = fileContent.size();
+        List<String> fileContent = new ArrayList<>(this.fileContent); 
 
         try {
             validateAndSetCodeSegment(fileContent);
