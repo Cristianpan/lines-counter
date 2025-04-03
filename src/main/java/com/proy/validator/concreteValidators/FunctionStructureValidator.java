@@ -12,7 +12,7 @@ import com.proy.validator.validatorContext.StandardValidator;
  * solo
  * en caso de ser un estructura de función
  * 
- * @version 1.2
+ * @version 1.3
  */
 
 public class FunctionStructureValidator extends StandardValidator {
@@ -104,7 +104,7 @@ public class FunctionStructureValidator extends StandardValidator {
      */
     private boolean isIncompleteFunction(List<String> lines) throws CodeStandarException {
         String structure = "(\\w+\\s+)+\\w+\\s*\\(.*\\s*";
-        if (matchesPattern(lines.get(0).trim(), structure)) {
+        if (matchesPattern(lines.get(0).trim(), structure) && !lines.get(0).trim().startsWith("return")) {
             return findEndOfLine(lines);
         }
         return false;

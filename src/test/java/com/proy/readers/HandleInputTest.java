@@ -27,7 +27,7 @@ public class HandleInputTest {
 
     @Test
     public void testGetInput_ValidFilePath() throws FileNotFoundException {
-        String simulatedInput = "src\\test\\resources\\validFolderPath\\validFile.java";
+        String simulatedInput = "src\\test\\resources\\validFolderPath\\validJavaFile.java";
         InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         Scanner scanner = new Scanner(inputStream);
 

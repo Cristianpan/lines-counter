@@ -17,7 +17,7 @@ public class ReaderFileTest {
     private File emptyFile;
     private File nonExistentFile;
 
-    /*
+    /**
      * Simular un archivo de prueba con contenido
      * Simular un archivo de prueba vacio
      * Simular un archivo de prueba inexistente
